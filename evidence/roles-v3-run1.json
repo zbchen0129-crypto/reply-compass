@@ -1,0 +1,34 @@
+{
+  "model": "gpt-4.1-mini",
+  "expected_prompt_version": "v3",
+  "preferences": {
+    "tone": "warm",
+    "emoji": true,
+    "language": "English"
+  },
+  "directions_by_case": {
+    "review_other": [
+      "简单致谢",
+      "先澄清"
+    ],
+    "review_self": [
+      "先澄清"
+    ],
+    "changed_decision": [
+      "答应"
+    ],
+    "conditional": [
+      "有条件答应"
+    ]
+  },
+  "synthetic_data": true,
+  "results": [
+    {
+      "case": "review_other",
+      "error": "{\"error\": \"模型服务连接失败或超时，请重试。\"}",
+      "status": 504
+    }
+  ],
+  "core_sha256": "e679ee72905defecc841f0fa4620b122887942eff246900b031b401be5a1299d",
+  "evaluation_scope": "single development regression, not held-out or baseline comparison"
+}

@@ -1,0 +1,950 @@
+{
+  "experiment": "evidence",
+  "model": "gpt-4.1-mini",
+  "dataset_hashes": {
+    "checker-fixed-v1.json": "6d7bfdf5c16117c69346a599f41f3e6952430e1de87c462849a95e88c86a5db6",
+    "checker-transfer-v1.json": "64fd149a7061ec0aa027da66099fb9dfa6753239591f711348a69541edd09a87"
+  },
+  "source_hashes": {
+    "core.py": "5b34b0afb2719bac73990b87b193f33177475b5dd03989658b96782d16545021",
+    "checker_evidence.py": "3ff5cd11c85b0572ea591f8611695bb473eaab965e8d29fbd382baedb65e83a3",
+    "scripts/compare_checkers.py": "1e73b683b81cc06e3729f223803766676b37c6f38766c06b2d5922dc0c5db08c"
+  },
+  "limits": {
+    "max_calls": 24,
+    "memory_bytes": 201326592,
+    "response_bytes": 1048576,
+    "output_bytes": 4194304
+  },
+  "label_source": "assistant-authored, not independently reviewed",
+  "results": [
+    {
+      "id": "roles_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 28213248,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.844,
+      "peak_after": 33980416
+    },
+    {
+      "id": "roles_valid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34029568,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "What time today will you be able to review my draft?",
+              "classification": "question",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Could you review my draft today?"
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Sure."
+                }
+              ],
+              "reason": "原消息中用户请求对方当天审稿，对方答应了，候选句是在澄清具体审稿时间，属于问句。"
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "other",
+            "comparison": "same_action",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "evidence": [
+              {
+                "message_id": "m1",
+                "quote": "Could you review my draft today?"
+              },
+              {
+                "message_id": "m2",
+                "quote": "Sure."
+              }
+            ],
+            "reason": "原请求和候选内容均涉及对方审稿的动作，行为主体相同，属于同一动作。"
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "reason": "当前意图为先澄清，候选句通过询问具体时间实现澄清目的，与意图相符。"
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.08,
+      "peak_after": 34144256
+    },
+    {
+      "id": "roles_invalid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34144256,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "Which sections would you like me to review for you?",
+              "classification": "question",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Could you review my draft today?"
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Sure."
+                }
+              ],
+              "reason": "The candidate asks which sections to review, seeking clarification rather than asserting new facts."
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "evidence": [
+              {
+                "message_id": "m1",
+                "quote": "Could you review my draft today?"
+              },
+              {
+                "message_id": "m2",
+                "quote": "Sure."
+              }
+            ],
+            "reason": "Original request action was made by self requesting other to review; candidate is self asking a clarifying question, a different action."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "reason": "Candidate aligns with '先澄清' (clarify first) direction by asking a clarifying question about the review scope."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.918,
+      "peak_after": 34193408
+    },
+    {
+      "id": "roles_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34193408,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.676,
+      "peak_after": 34209792
+    },
+    {
+      "id": "acceptance_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34209792,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.819,
+      "peak_after": 34209792
+    },
+    {
+      "id": "acceptance_valid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34209792,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+              "classification": "new_decision",
+              "evidence": [
+                {
+                  "message_id": "m2",
+                  "quote": "Would you join dinner Saturday?"
+                }
+              ],
+              "reason": "Original messages show the user was uncertain about Saturday; the candidate expresses a clear acceptance, which is a new decision."
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Would you join dinner Saturday?"
+              }
+            ],
+            "reason": "Original action is an invitation by other; candidate is an acceptance by self, which is a different action."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "reason": "Candidate clearly accepts the dinner invitation, matching the current intent to accept."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.457,
+      "peak_after": 34226176
+    },
+    {
+      "id": "acceptance_invalid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34242560,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "The candidate does not clearly accept the invitation but delays decision, conflicting with the current intent to accept.",
+            "related_message_ids": []
+          }
+        ],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "I'll check my schedule before deciding whether to join.",
+              "classification": "conditional",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "I am not sure about Saturday."
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Would you join dinner Saturday?"
+                }
+              ],
+              "reason": "Candidate expresses a conditional response ('I'll check') rather than a clear acceptance as requested."
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "evidence": [
+              {
+                "message_id": "m1",
+                "quote": "I am not sure about Saturday."
+              },
+              {
+                "message_id": "m2",
+                "quote": "Would you join dinner Saturday?"
+              }
+            ],
+            "reason": "Original action is an invitation by other; candidate merely postpones decision, not an acceptance."
+          },
+          "stance": {
+            "matches": "no",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "reason": "The candidate does not clearly accept the invitation but delays decision, conflicting with the current intent to accept."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.865,
+      "peak_after": 34275328
+    },
+    {
+      "id": "acceptance_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34291712,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "回复内容表明用户会先确认日程再决定是否参加晚餐，实际上并未明确答应邀请，违背了“答应”方向。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.497,
+      "peak_after": 34291712
+    },
+    {
+      "id": "conditional_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34308096,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.56,
+      "peak_after": 34324480
+    },
+    {
+      "id": "conditional_valid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34324480,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "role_conflict",
+            "explanation": "The original requester is 'other', candidate actor is 'self'; both involve helping move, so action is same.",
+            "related_message_ids": [
+              "m2"
+            ]
+          }
+        ],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "If I can free up an hour Friday",
+              "classification": "conditional",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Friday is packed."
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Could you help me move for an hour Friday?"
+                }
+              ],
+              "reason": "Original message states Friday is packed, candidate presents a conditional availability."
+            },
+            {
+              "candidate_quote": "I can help you move",
+              "classification": "new_decision",
+              "evidence": [
+                {
+                  "message_id": "m2",
+                  "quote": "Could you help me move for an hour Friday?"
+                }
+              ],
+              "reason": "Candidate accepts to help move, which is the requested action."
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "same_action",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Could you help me move for an hour Friday?"
+              }
+            ],
+            "reason": "The original requester is 'other', candidate actor is 'self'; both involve helping move, so action is same."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "reason": "Candidate expresses a conditional acceptance matching the desired direction of conditional agreement."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.104,
+      "peak_after": 34357248
+    },
+    {
+      "id": "conditional_invalid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34357248,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "原始信息仅表明周五很忙，没有具体说明4点是否有空，候选回答的具体时间不存在于原始消息中。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+              "classification": "unsupported",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Friday is packed."
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Could you help me move for an hour Friday?"
+                }
+              ],
+              "reason": "原始信息仅表明周五很忙，没有具体说明4点是否有空，候选回答的具体时间不存在于原始消息中。"
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Could you help me move for an hour Friday?"
+              }
+            ],
+            "reason": "原始请求是对方请求周五帮忙搬家，候选回答是用户表态有时间帮忙，行动主体不同，动作性质也不同。"
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "reason": "候选回答表达了有条件的帮助，符合集当前意向中的‘有条件答应’要求，虽然具体时间未被原始消息支持，但符合有条件答应的方向。"
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.795,
+      "peak_after": 34390016
+    },
+    {
+      "id": "conditional_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34488320,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "用户之前表明周五很忙，这里回复中说4点周五有空帮忙，新增了一个未被用户明确声明的空闲时间，构成不支持的事实。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.148,
+      "peak_after": 34488320
+    },
+    {
+      "id": "clarification_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34488320,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.623,
+      "peak_after": 34504704
+    },
+    {
+      "id": "clarification_valid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34521088,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "What time were you thinking for dinner?",
+              "classification": "question",
+              "evidence": [
+                {
+                  "message_id": "m2",
+                  "quote": "Dinner Saturday?"
+                }
+              ],
+              "reason": "Candidate asks for specific dinner time, clarifying the original vague proposal about dinner on Saturday."
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Dinner Saturday?"
+              }
+            ],
+            "reason": "Original message by other proposes dinner on Saturday; candidate from self asks a clarifying question about time, which is a different action."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "reason": "Candidate fulfills the intent to clarify by asking about the specific dinner time, matching current intent."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.196,
+      "peak_after": 34521088
+    },
+    {
+      "id": "clarification_invalid",
+      "split": "development",
+      "variant": "evidence",
+      "peak_before": 34521088,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "原始消息中只表明周六可能可行，且确认了晚餐，但未具体说明确定时间7点",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "当前意图为先澄清，候选回复却直接确认时间，未进行澄清，未匹配用户当前澄清意图",
+            "related_message_ids": []
+          }
+        ],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "dinner is confirmed for 7 pm Saturday",
+              "classification": "unsupported",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Saturday might work."
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Dinner Saturday?"
+                }
+              ],
+              "reason": "原始消息中只表明周六可能可行，且确认了晚餐，但未具体说明确定时间7点"
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "dinner is confirmed for 7 pm Saturday",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Dinner Saturday?"
+              }
+            ],
+            "reason": "原始消息中对方提出晚餐邀约，候选回复确认具体时间，回复中通过声明确定时间体现了不同行为（澄清确认 vs 提议）"
+          },
+          "stance": {
+            "matches": "no",
+            "candidate_quote": "dinner is confirmed for 7 pm Saturday",
+            "reason": "当前意图为先澄清，候选回复却直接确认时间，未进行澄清，未匹配用户当前澄清意图"
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.199,
+      "peak_after": 34537472
+    },
+    {
+      "id": "clarification_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34570240,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "回复中确认了周六晚上7点的晚餐时间，但原始对话中并未确定具体时间，当前意图要求先澄清请求内容，因此回复未满足澄清时间具体安排的需求，缺少对时间是否合适的询问或确认。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.453,
+      "peak_after": 34586624
+    },
+    {
+      "id": "photos_valid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34586624,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.227,
+      "peak_after": 34586624
+    },
+    {
+      "id": "photos_valid",
+      "split": "transfer",
+      "variant": "evidence",
+      "peak_before": 34586624,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "Which album will you send me tonight?",
+              "classification": "question",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Can you send me the trip photos?"
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Yes, tonight."
+                }
+              ],
+              "reason": "候选句为提问，询问具体发送哪个相册，和原消息内容相关但不直接断定任何事实。"
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "Which album will you send me tonight?",
+            "evidence": [
+              {
+                "message_id": "m1",
+                "quote": "Can you send me the trip photos?"
+              },
+              {
+                "message_id": "m2",
+                "quote": "Yes, tonight."
+              }
+            ],
+            "reason": "原消息由\"other\"行动(承诺发照片)，候选句是self提问，动作不同。"
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "Which album will you send me tonight?",
+            "reason": "候选句为澄清问题，符合先澄清意图，与当前意图匹配。"
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.198,
+      "peak_after": 34603008
+    },
+    {
+      "id": "refusal_valid",
+      "split": "transfer",
+      "variant": "evidence",
+      "peak_before": 34652160,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "I cannot water your plants Sunday.",
+              "classification": "supported",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "I am busy this weekend."
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Can you water my plants Sunday?"
+                }
+              ],
+              "reason": "The candidate denies watering plants Sunday which aligns with original message indicating user is busy this weekend, supporting refusal."
+            }
+          ],
+          "roles": {
+            "original_actor": "self",
+            "candidate_actor": "self",
+            "comparison": "same_action",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Can you water my plants Sunday?"
+              }
+            ],
+            "reason": "Original request action is user watering plants Sunday; candidate expresses refusal of same action."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "reason": "Candidate clearly refuses the request, consistent with current intent to拒绝 (refuse)."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 2.546,
+      "peak_after": 34652160
+    },
+    {
+      "id": "refusal_valid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34668544,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.87,
+      "peak_after": 34684928
+    },
+    {
+      "id": "photos_invalid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34684928,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.648,
+      "peak_after": 34684928
+    },
+    {
+      "id": "photos_invalid",
+      "split": "transfer",
+      "variant": "evidence",
+      "peak_before": 34684928,
+      "response": {
+        "checks": [],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "Which album should I send you tonight?",
+              "classification": "question",
+              "evidence": [
+                {
+                  "message_id": "m1",
+                  "quote": "Can you send me the trip photos?"
+                },
+                {
+                  "message_id": "m2",
+                  "quote": "Yes, tonight."
+                }
+              ],
+              "reason": "候选句询问具体应该发送哪个相册，属于澄清问题，未断言具体承诺或行动。"
+            }
+          ],
+          "roles": {
+            "original_actor": "other",
+            "candidate_actor": "self",
+            "comparison": "different_action",
+            "candidate_quote": "Which album should I send you tonight?",
+            "evidence": [
+              {
+                "message_id": "m1",
+                "quote": "Can you send me the trip photos?"
+              },
+              {
+                "message_id": "m2",
+                "quote": "Yes, tonight."
+              }
+            ],
+            "reason": "原始请求由other执行发送照片动作，候选回复由self提出澄清问题，动作主体不同，动作也不同。"
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "Which album should I send you tonight?",
+            "reason": "当前意图为先澄清，该候选问句属于澄清性质，符合当前意图，符合要求。"
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.07,
+      "peak_after": 34701312
+    },
+    {
+      "id": "refusal_invalid",
+      "split": "transfer",
+      "variant": "evidence",
+      "peak_before": 34750464,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "No original message mentions flying to Paris.",
+            "related_message_ids": []
+          }
+        ],
+        "audit": {
+          "claims": [
+            {
+              "candidate_quote": "I cannot water your plants Sunday",
+              "classification": "new_decision",
+              "evidence": [
+                {
+                  "message_id": "m2",
+                  "quote": "Can you water my plants Sunday?"
+                }
+              ],
+              "reason": "Candidate is a new explicit refusal of the request in m2."
+            },
+            {
+              "candidate_quote": "because I will be flying to Paris",
+              "classification": "unsupported",
+              "evidence": [],
+              "reason": "No original message mentions flying to Paris."
+            }
+          ],
+          "roles": {
+            "original_actor": "self",
+            "candidate_actor": "self",
+            "comparison": "same_action",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "evidence": [
+              {
+                "message_id": "m2",
+                "quote": "Can you water my plants Sunday?"
+              }
+            ],
+            "reason": "Both original and candidate focus on action of watering plants by self."
+          },
+          "stance": {
+            "matches": "yes",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "reason": "Candidate clearly refuses the request, aligning with current intent to refuse."
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "evidence-v1"
+      },
+      "seconds": 3.129,
+      "peak_after": 34750464
+    },
+    {
+      "id": "refusal_invalid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34750464,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.758,
+      "peak_after": 34750464
+    }
+  ],
+  "calls_attempted": 24,
+  "scores": {
+    "development_baseline": {
+      "true_positive": 3,
+      "false_positive": 0,
+      "true_negative": 4,
+      "false_negative": 1,
+      "completed": 8,
+      "failed": 0,
+      "target_hits": 2,
+      "target_total": 4,
+      "not_run": 0,
+      "false_positive_denominator": 4,
+      "false_negative_denominator": 4
+    },
+    "development_evidence": {
+      "true_positive": 3,
+      "false_positive": 1,
+      "true_negative": 3,
+      "false_negative": 1,
+      "completed": 8,
+      "failed": 0,
+      "target_hits": 3,
+      "target_total": 4,
+      "not_run": 0,
+      "false_positive_denominator": 4,
+      "false_negative_denominator": 4
+    },
+    "transfer_baseline": {
+      "true_positive": 0,
+      "false_positive": 0,
+      "true_negative": 2,
+      "false_negative": 2,
+      "completed": 4,
+      "failed": 0,
+      "target_hits": 0,
+      "target_total": 2,
+      "not_run": 0,
+      "false_positive_denominator": 2,
+      "false_negative_denominator": 2
+    },
+    "transfer_evidence": {
+      "true_positive": 1,
+      "false_positive": 0,
+      "true_negative": 2,
+      "false_negative": 1,
+      "completed": 4,
+      "failed": 0,
+      "target_hits": 1,
+      "target_total": 2,
+      "not_run": 0,
+      "false_positive_denominator": 2,
+      "false_negative_denominator": 2
+    }
+  },
+  "uncertain_verdicts": 0
+}

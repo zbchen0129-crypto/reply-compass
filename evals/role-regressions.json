@@ -1,0 +1,45 @@
+[
+  {
+    "id": "review_other",
+    "chat": "我：Could you review my draft today?\n对方：Sure 🙂",
+    "directions": [
+      "简单致谢",
+      "先澄清"
+    ],
+    "expected": {
+      "requester": "self",
+      "actor": "other",
+      "recipient": "self"
+    },
+    "rubric": "用户是被帮助者；回复不能说自己要审稿。检查器应识别角色反转。"
+  },
+  {
+    "id": "review_self",
+    "chat": "对方：Could you review my draft today?\n我：Sure 🙂",
+    "directions": [
+      "先澄清"
+    ],
+    "expected": {
+      "requester": "other",
+      "actor": "self",
+      "recipient": "other"
+    },
+    "rubric": "仅互换说话人，执行者应变为用户；可询问审稿重点，不能感谢对方替自己审稿。"
+  },
+  {
+    "id": "changed_decision",
+    "chat": "我：I am not sure I can join Saturday.\n对方：Would you join dinner Saturday?",
+    "directions": [
+      "答应"
+    ],
+    "rubric": "允许新选择确认参加，提示新增承诺；不能仅因历史不确定判为虚构事实。不得新增日期或理由。"
+  },
+  {
+    "id": "conditional",
+    "chat": "我：Friday is packed.\n对方：Can you help me move for an hour Friday?",
+    "directions": [
+      "有条件答应"
+    ],
+    "rubric": "如果能腾出时间才帮忙是有效条件答应；不得要求无条件接受，也不得编造下午有空。"
+  }
+]

@@ -1,0 +1,196 @@
+{
+  "dataset_version": "checker-transfer-v1",
+  "split": "transfer",
+  "label_author": "assistant; not independent or blind",
+  "notes": "New topics frozen before first comparison; not independent held-out evaluation.",
+  "cases": [
+    {
+      "id": "photos_valid",
+      "expected_error_types": [],
+      "request": {
+        "chat": "我：Can you send me the trip photos?\n对方：Yes, tonight.",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "用户请求对方发旅行照片，对方答应今晚发。",
+              "roles": {
+                "subject": "other",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "Which album will you send me tonight?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "refusal_valid",
+      "expected_error_types": [],
+      "request": {
+        "chat": "我：I am busy this weekend.\n对方：Can you water my plants Sunday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方请求用户周日浇花，用户原先很忙。",
+              "roles": {
+                "subject": "self",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "拒绝"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "拒绝",
+            "text": "I cannot water your plants Sunday.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "photos_invalid",
+      "expected_error_types": [
+        "role_conflict"
+      ],
+      "request": {
+        "chat": "我：Can you send me the trip photos?\n对方：Yes, tonight.",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "用户请求对方发旅行照片，对方答应今晚发。",
+              "roles": {
+                "subject": "other",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "Which album should I send you tonight?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "refusal_invalid",
+      "expected_error_types": [
+        "unsupported_fact"
+      ],
+      "request": {
+        "chat": "我：I am busy this weekend.\n对方：Can you water my plants Sunday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方请求用户周日浇花，用户原先很忙。",
+              "roles": {
+                "subject": "self",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "拒绝"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "拒绝",
+            "text": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

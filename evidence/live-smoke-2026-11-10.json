@@ -1,0 +1,306 @@
+{
+  "model": "gpt-4.1-mini",
+  "synthetic_data": true,
+  "results": [
+    {
+      "case": "invitation",
+      "chat": "我：This week is busy. I might be free Saturday, but I’m not sure yet.\n对方：Dinner Saturday? 🙂 You pick the place this time.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "This week is busy. I might be free Saturday, but I’m not sure yet."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Dinner Saturday? 🙂 You pick the place this time."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "This week is busy for the user.",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "uncertain1",
+              "kind": "uncertain",
+              "text": "User might be free Saturday, but is not sure yet.",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "commitment1",
+              "kind": "commitment",
+              "text": "Other person suggests dinner on Saturday and requests the user to pick the place.",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "答应",
+            "text": "That sounds great! I'll check my schedule and let you know by Friday. Looking forward to a lovely dinner 😊. Any preferences on cuisine?",
+            "introduced_commitments": [
+              "Will check schedule and confirm availability by Friday",
+              "Will select the dinner place if free"
+            ],
+            "assumptions": [
+              "Might be free on Saturday",
+              "Other person is okay waiting for confirmation"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "拒绝",
+            "text": "Thanks for the invite! Unfortunately, this week is quite busy for me, and I won't be able to make it on Saturday 😞. Hopefully we can plan something soon!",
+            "introduced_commitments": [
+              "Will not be available for dinner on Saturday"
+            ],
+            "assumptions": [
+              "User is too busy this week to attend dinner",
+              "Other person will understand the cancellation"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "I might be busy this week and not sure about Saturday yet. Could you let me know what time you were thinking for dinner? That might help me figure things out 😊.",
+            "introduced_commitments": [
+              "Will consider availability based on dinner time"
+            ],
+            "assumptions": [
+              "Time of dinner could affect availability",
+              "Other person can provide more details"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v1"
+      },
+      "seconds": 6.05
+    },
+    {
+      "case": "help",
+      "chat": "我：Friday is already packed for me.\n对方：Could you help me move on Friday? Even an hour would help.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Friday is already packed for me."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Could you help me move on Friday? Even an hour would help."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "User is busy on Friday.",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "Can the user help move on Friday despite being busy?",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "拒绝",
+            "text": "I'm really sorry, but Friday is completely packed for me and I won't be able to help with moving. I hope the move goes smoothly! 🙏",
+            "introduced_commitments": [
+              "User will not help moving on Friday."
+            ],
+            "assumptions": [
+              "The user's Friday schedule cannot be changed."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "有条件答应",
+            "text": "Friday is pretty packed, but I might be able to spare an hour in the late afternoon to help you move. Let me know if that works! 🙂",
+            "introduced_commitments": [
+              "User will help with moving on Friday for about an hour, late afternoon."
+            ],
+            "assumptions": [
+              "User's Friday schedule has a small opening in late afternoon."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "提出替代方案",
+            "text": "Friday is fully booked for me unfortunately. How about I help you move on Saturday instead? I could definitely spare more time then! 🚚",
+            "introduced_commitments": [
+              "User will help moving on Saturday instead."
+            ],
+            "assumptions": [
+              "User is available on Saturday to help."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v1"
+      },
+      "seconds": 5.76
+    },
+    {
+      "case": "emoji",
+      "chat": "我：Could you take another look at the draft today?\n对方：Sure 🙂",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Could you take another look at the draft today?"
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Sure 🙂"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "The user asked the other person to review the draft today.",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "commitment1",
+              "kind": "commitment",
+              "text": "The other person agreed to take another look at the draft today.",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "简单致谢",
+            "text": "Thank you so much for agreeing to review the draft again today! 😊",
+            "introduced_commitments": [
+              "express gratitude for review agreement"
+            ],
+            "assumptions": [
+              "the other person will review the draft today"
+            ],
+            "evidence_ids": [
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Just to clarify, do you have any specific areas you'd like me to focus on in the draft before you review it? 🙂",
+            "introduced_commitments": [
+              "seek clarification on review focus"
+            ],
+            "assumptions": [
+              "the other person might have specific concerns or focus areas"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "暂缓决定",
+            "text": "I appreciate you agreeing to review the draft today! If it turns out you need more time, just let me know. 🙂",
+            "introduced_commitments": [
+              "allow flexibility on review timing"
+            ],
+            "assumptions": [
+              "the review might be delayed or need rescheduling"
+            ],
+            "evidence_ids": [
+              "m2"
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "new_commitment",
+            "explanation": "回复中表达了感谢对方同意今天审阅草稿，新增了表达感激的承诺。这在上下文中不存在，但符合对话预期。",
+            "related_message_ids": [
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 1,
+            "type": "new_commitment",
+            "explanation": "回复中询问对方是否有具体关注点，新增了寻求澄清的承诺。这在上下文中不存在，但合理且符合澄清方向。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 2,
+            "type": "new_commitment",
+            "explanation": "回复中提供了对审阅时间的灵活性，新增了承诺允许对方延期审阅。这在上下文中不存在，但符合暂缓决定的方向。",
+            "related_message_ids": [
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v1"
+      },
+      "seconds": 6.09
+    }
+  ]
+}

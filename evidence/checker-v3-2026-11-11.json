@@ -1,0 +1,196 @@
+{
+  "dataset_version": "checker-fixed-v1",
+  "dataset_sha256": "6d7bfdf5c16117c69346a599f41f3e6952430e1de87c462849a95e88c86a5db6",
+  "label_author": "development assistant; not independently reviewed",
+  "split": "development",
+  "server": {
+    "ready": true,
+    "provider": "OpenAI",
+    "prompt_version": "v3",
+    "capabilities": [
+      "checker_v1"
+    ],
+    "model": "gpt-4.1-mini"
+  },
+  "results": [
+    {
+      "id": "roles_valid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.636
+    },
+    {
+      "id": "roles_invalid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.62
+    },
+    {
+      "id": "acceptance_valid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.476
+    },
+    {
+      "id": "acceptance_invalid",
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "回复中说『I'll check my schedule before deciding whether to join』表示还未做出参加周六晚餐的决定，存在不确定性，不符合答应的方向要求。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.376
+    },
+    {
+      "id": "conditional_valid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.883
+    },
+    {
+      "id": "conditional_invalid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.694
+    },
+    {
+      "id": "clarification_valid",
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.71
+    },
+    {
+      "id": "clarification_invalid",
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "该回复直接确认了周六晚7点的晚餐，但用户原消息仅表达了可能行，且未具体确定时间，回复缺少对时间确认的澄清，属于忽略请求中的时间不确定性，未完成先澄清指令。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.138
+    }
+  ],
+  "limitations": "Development cases; assistant-authored labels; no independent review. Raw type-based scores need explanation review.",
+  "score": {
+    "counts": {
+      "true_positive": 2,
+      "false_positive": 0,
+      "true_negative": 4,
+      "false_negative": 2,
+      "completed": 8,
+      "failed": 0,
+      "target_hits": 1,
+      "target_total": 4,
+      "not_run": 0,
+      "false_positive_denominator": 4,
+      "false_negative_denominator": 4
+    },
+    "rows": [
+      {
+        "id": "roles_valid",
+        "outcome": "true_negative",
+        "expected": [],
+        "reported": [],
+        "target_type_detected": true
+      },
+      {
+        "id": "roles_invalid",
+        "outcome": "false_negative",
+        "expected": [
+          "role_conflict"
+        ],
+        "reported": [],
+        "target_type_detected": false
+      },
+      {
+        "id": "acceptance_valid",
+        "outcome": "true_negative",
+        "expected": [],
+        "reported": [],
+        "target_type_detected": true
+      },
+      {
+        "id": "acceptance_invalid",
+        "outcome": "true_positive",
+        "expected": [
+          "stance_conflict"
+        ],
+        "reported": [
+          "stance_conflict"
+        ],
+        "target_type_detected": true
+      },
+      {
+        "id": "conditional_valid",
+        "outcome": "true_negative",
+        "expected": [],
+        "reported": [],
+        "target_type_detected": true
+      },
+      {
+        "id": "conditional_invalid",
+        "outcome": "false_negative",
+        "expected": [
+          "unsupported_fact"
+        ],
+        "reported": [],
+        "target_type_detected": false
+      },
+      {
+        "id": "clarification_valid",
+        "outcome": "true_negative",
+        "expected": [],
+        "reported": [],
+        "target_type_detected": true
+      },
+      {
+        "id": "clarification_invalid",
+        "outcome": "true_positive",
+        "expected": [
+          "unsupported_fact"
+        ],
+        "reported": [
+          "missing_answer"
+        ],
+        "target_type_detected": false
+      }
+    ]
+  },
+  "core_sha256": "99a63d55b191e2156e1b9f428ef7f82074cfd639d4761014360b5ea62d2025c8"
+}

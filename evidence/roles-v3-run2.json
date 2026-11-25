@@ -1,0 +1,310 @@
+{
+  "model": "gpt-4.1-mini",
+  "expected_prompt_version": "v3",
+  "preferences": {
+    "tone": "warm",
+    "emoji": true,
+    "language": "English"
+  },
+  "directions_by_case": {
+    "review_other": [
+      "简单致谢",
+      "先澄清"
+    ],
+    "review_self": [
+      "先澄清"
+    ],
+    "changed_decision": [
+      "答应"
+    ],
+    "conditional": [
+      "有条件答应"
+    ]
+  },
+  "synthetic_data": true,
+  "results": [
+    {
+      "case": "review_other",
+      "chat": "我：Could you review my draft today?\n对方：Sure 🙂",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Could you review my draft today?"
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Sure 🙂"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "commitment",
+              "text": "对方同意今天审阅用户的草稿。",
+              "roles": {
+                "subject": "other",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "用户请求对方今天审阅草稿。",
+              "roles": {
+                "subject": "self",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "简单致谢",
+            "text": "Thank you so much for agreeing to review my draft today! 😊",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Could you please let me know what time you plan to start reviewing the draft today?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 3.16
+    },
+    {
+      "case": "review_self",
+      "chat": "对方：Could you review my draft today?\n我：Sure 🙂",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "other",
+            "text": "Could you review my draft today?"
+          },
+          {
+            "id": "m2",
+            "speaker": "self",
+            "text": "Sure 🙂"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "用户答应了审查对方的草稿。",
+              "roles": {
+                "subject": "self",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "先澄清",
+            "text": "Could you please let me know the deadline for the draft review? 😊",
+            "introduced_commitments": [],
+            "assumptions": [
+              "The time frame for reviewing the draft is not yet specified."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 2.85
+    },
+    {
+      "case": "changed_decision",
+      "chat": "我：I am not sure I can join Saturday.\n对方：Would you join dinner Saturday?",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "I am not sure I can join Saturday."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Would you join dinner Saturday?"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "用户不确定能否参加星期六的活动。",
+              "roles": {
+                "subject": "self",
+                "requester": "not_applicable",
+                "actor": "not_applicable",
+                "recipient": "not_applicable"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "对方询问用户是否会参加星期六的晚餐。",
+              "roles": {
+                "subject": "other",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "答应",
+            "text": "I'd love to join the dinner on Saturday! Looking forward to it 😊",
+            "introduced_commitments": [
+              "I will join the dinner on Saturday."
+            ],
+            "assumptions": [
+              "I have arranged my schedule to be free for Saturday dinner."
+            ],
+            "evidence_ids": [
+              "m2",
+              "m1"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 3.83
+    },
+    {
+      "case": "conditional",
+      "chat": "我：Friday is packed.\n对方：Can you help me move for an hour Friday?",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Friday is packed."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Can you help me move for an hour Friday?"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "Friday的时间非常满。",
+              "roles": {
+                "subject": "self",
+                "requester": "not_applicable",
+                "actor": "not_applicable",
+                "recipient": "not_applicable"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "用户能否在星期五帮忙搬家一个小时？",
+              "roles": {
+                "subject": "other",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "有条件答应",
+            "text": "I'd be glad to help you move on Friday for an hour if I can manage to free up some time then. Let me confirm my schedule and get back to you soon! 😊",
+            "introduced_commitments": [
+              "Will check availability to help moving for an hour on Friday"
+            ],
+            "assumptions": [
+              "Helper's current schedule is packed on Friday but may have some flexibility"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 3.82
+    }
+  ],
+  "core_sha256": "e679ee72905defecc841f0fa4620b122887942eff246900b031b401be5a1299d",
+  "evaluation_scope": "single development regression retry; not held-out or baseline comparison"
+}

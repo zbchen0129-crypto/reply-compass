@@ -1,0 +1,967 @@
+{
+  "model": "gpt-4.1-mini",
+  "dataset_hashes": {
+    "checker-fixed-v1.json": "6d7bfdf5c16117c69346a599f41f3e6952430e1de87c462849a95e88c86a5db6",
+    "checker-transfer-v1.json": "64fd149a7061ec0aa027da66099fb9dfa6753239591f711348a69541edd09a87"
+  },
+  "source_hashes": {
+    "core.py": "5b34b0afb2719bac73990b87b193f33177475b5dd03989658b96782d16545021",
+    "checker_dimensions.py": "d76975e19d4c9b40499c319606a6c284565638845adb38c616c45a3ab08752e2"
+  },
+  "limits": {
+    "max_calls": 24,
+    "memory_bytes": 201326592,
+    "response_bytes": 1048576,
+    "output_bytes": 4194304
+  },
+  "label_source": "assistant-authored, not independently reviewed",
+  "results": [
+    {
+      "id": "roles_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 27787264,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.871,
+      "peak_after": 33505280
+    },
+    {
+      "id": "roles_valid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 33554432,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "reason": "用户请求对方审稿（自己请求，对方答应），该候选回复中自己问对方具体时间，符合角色分配。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "reason": "用户意向是先澄清，此候选回复表达了对方何时审稿的澄清，符合先澄清方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "reason": "候选回复未引入新事实，内容合理询问今日具体时间，与已有信息一致。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "What time today will you be able to review my draft?",
+            "reason": "候选回复有效聚焦澄清对方何时能审稿，符合先澄清方向的覆盖需求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 4.349,
+      "peak_after": 33685504
+    },
+    {
+      "id": "roles_invalid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 33701888,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "reason": "发言中提出了具体的审稿范围细节问题，符合发起人请求，角色关系清晰。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "reason": "用户当前意向为先澄清，候选回应询问审稿具体需求，符合先澄清方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "reason": "候选回应未涉及具体日期时间，但结合上下文，此处询问细节无矛盾事实。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "Which sections would you like me to review for you?",
+            "reason": "候选回复专注澄清审稿范围，符合先澄清需求，未遗漏相关细节。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 4.524,
+      "peak_after": 33734656
+    },
+    {
+      "id": "roles_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 33816576,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.861,
+      "peak_after": 33832960
+    },
+    {
+      "id": "acceptance_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 33832960,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.109,
+      "peak_after": 33865728
+    },
+    {
+      "id": "acceptance_valid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 33882112,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "reason": "候选回复明确表达了自己（self）接受了对方（other）的邀请，符合邀请的角色定位。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "reason": "用户当前意图为答应，该回复明确表示同意，符合用户当前意图方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "reason": "原消息中用户曾表示不确定，但回复中明确表示会参加，时间和事项与原消息匹配，未增加新信息。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "Yes, I will join you for dinner on Saturday.",
+            "reason": "回复直接对应了对方“周六晚餐邀请”的请求，满足了全部所需答复内容。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.928,
+      "peak_after": 33882112
+    },
+    {
+      "id": "acceptance_invalid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 33914880,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "role_conflict",
+            "explanation": "Candidate does not show self accepting the dinner invitation, but rather postpones decision, failing to '答应' (accept) the invitation.",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "User's direction is to accept ('答应'), but candidate postpones decision, not aligning with acceptance.",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "Fails to explicitly accept the invitation, which is core to the user's direction ('答应').",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "dimensions": {
+          "roles": {
+            "status": "fail",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "reason": "Candidate does not show self accepting the dinner invitation, but rather postpones decision, failing to '答应' (accept) the invitation.",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "fail",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "reason": "User's direction is to accept ('答应'), but candidate postpones decision, not aligning with acceptance.",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "reason": "Mentions checking schedule, consistent with user's uncertainty about Saturday; no factual contradictions.",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "fail",
+            "candidate_quote": "I'll check my schedule before deciding whether to join.",
+            "reason": "Fails to explicitly accept the invitation, which is core to the user's direction ('答应').",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 2.929,
+      "peak_after": 33964032
+    },
+    {
+      "id": "acceptance_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34013184,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "回复 \"I'll check my schedule before deciding whether to join.\" 并没有明确答应周六晚餐的邀请，而是表达了需要先确认行程的态度，这与\"答应\"的方向（明确接受邀请）存在冲突。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.878,
+      "peak_after": 34013184
+    },
+    {
+      "id": "conditional_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34062336,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.632,
+      "peak_after": 34062336
+    },
+    {
+      "id": "conditional_valid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 34078720,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "reason": "候选回复表明用户（self）如果能够腾出时间，将帮助对方（other）搬家，符合请求者为对方且行动者为用户的角色分配。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "reason": "用户以有条件的语气回应了对方请求，符合当前用户意图“有条件答应”。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "reason": "用户指出需腾出时间，回应了原文中“Friday is packed”的忙碌状态，没有违反事实。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "If I can free up an hour Friday, I can help you move.",
+            "reason": "答复覆盖了对方请求的帮忙搬家一小时的核心内容，并表明条件，符合需要的范围。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.481,
+      "peak_after": 34127872
+    },
+    {
+      "id": "conditional_invalid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 34144256,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "reason": "用户是请求的行动者，并且表示自己在周五下午4点有空，可以帮助搬家，符合请求者为对方，行动者为用户的角色分配。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "reason": "用户原先说周五很忙，但新回复表达了一个具体时间可以帮忙，符合有条件答应的方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "reason": "用户明确指出星期五下午四点有空，具体时间的陈述与上下文请求的时间一致，且无虚假信息。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "I'm free at 4 pm Friday and can help then.",
+            "reason": "回复聚焦于请求的帮忙时间，明确给出了一个具体可行的时间段，覆盖了请求的核心内容。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.208,
+      "peak_after": 34160640
+    },
+    {
+      "id": "conditional_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34226176,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "回复中提到用户在周五下午4点有空，但原始消息中用户仅表示周五安排满，没有提供任何具体空闲时间信息，因此该回复中的具体空闲时间属于未支持的事实。",
+            "related_message_ids": [
+              "m1"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "对方请求用户周五帮忙搬家一个小时，但回复未明确答应整个请求，仅提到一个具体时间点的空闲，未完整回应请求的时长要求，导致回答不完整。",
+            "related_message_ids": [
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 2.213,
+      "peak_after": 34226176
+    },
+    {
+      "id": "clarification_valid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34226176,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.01,
+      "peak_after": 34242560
+    },
+    {
+      "id": "clarification_valid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 34242560,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "reason": "candidate询问对方具体时间，符合先澄清要求，且角色关系正确：对方邀请，自己回应。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "reason": "用户当前意图为先澄清，候选回复直接询问具体时间，与意图一致。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "reason": "候选不包含与原消息冲突的具体时间信息，保持事实准确。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "What time were you thinking for dinner?",
+            "reason": "候选覆盖了必须先澄清的内容，直接询问对方所想时间，满足清晰需求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.225,
+      "peak_after": 34258944
+    },
+    {
+      "id": "clarification_invalid",
+      "split": "development",
+      "variant": "dimensions",
+      "peak_before": 34275328,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "role_conflict",
+            "explanation": "候选回复中确认了具体时间，并且接受了晚餐邀请，但对方最初只是含糊地提到可能周六，且还未确定时间，用户要求先澄清，因此候选回复中角色表现不符。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "用户当前意图是先澄清对方的请求，候选回复却直接确认了晚餐时间，未符合用户意图。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "原始消息中仅提到“Saturday might work”和“Dinner Saturday?”，没有提及具体时间7点，候选回复中新增了具体时间，属事实错误。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "候选回复未包含任何澄清问题，只是直接确认时间，没有覆盖用户指示的先澄清需求。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "dimensions": {
+          "roles": {
+            "status": "fail",
+            "candidate_quote": "Great, dinner is confirmed for 7 pm Saturday.",
+            "reason": "候选回复中确认了具体时间，并且接受了晚餐邀请，但对方最初只是含糊地提到可能周六，且还未确定时间，用户要求先澄清，因此候选回复中角色表现不符。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "fail",
+            "candidate_quote": "Great, dinner is confirmed for 7 pm Saturday.",
+            "reason": "用户当前意图是先澄清对方的请求，候选回复却直接确认了晚餐时间，未符合用户意图。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "fail",
+            "candidate_quote": "Great, dinner is confirmed for 7 pm Saturday.",
+            "reason": "原始消息中仅提到“Saturday might work”和“Dinner Saturday?”，没有提及具体时间7点，候选回复中新增了具体时间，属事实错误。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "fail",
+            "candidate_quote": "Great, dinner is confirmed for 7 pm Saturday.",
+            "reason": "候选回复未包含任何澄清问题，只是直接确认时间，没有覆盖用户指示的先澄清需求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 4.68,
+      "peak_after": 34275328
+    },
+    {
+      "id": "clarification_invalid",
+      "split": "development",
+      "variant": "baseline",
+      "peak_before": 34275328,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "missing_answer",
+            "explanation": "用户请求澄清周六晚餐的具体时间，但回复直接确认了7点的时间，未进行澄清。回复遗漏了对具体时间的确认，因此存在遗漏回答问题的情况。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 1.708,
+      "peak_after": 34291712
+    },
+    {
+      "id": "photos_valid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34291712,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.681,
+      "peak_after": 34291712
+    },
+    {
+      "id": "photos_valid",
+      "split": "transfer",
+      "variant": "dimensions",
+      "peak_before": 34291712,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "Which album will you send me tonight?",
+            "reason": "用户请求对方发照片，候选回复询问具体哪个相册，符合请求者（self）先澄清具体行动的角色，符合对方（other）将发送行为。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "Which album will you send me tonight?",
+            "reason": "用户当前意图是先澄清，候选回复通过询问具体发送内容明确下一步细节，符合先澄清方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "Which album will you send me tonight?",
+            "reason": "对方原文答应“Yes, tonight”，候选回复未更改事实，仅确认细节，符合事实核对要求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "Which album will you send me tonight?",
+            "reason": "候选回复精准覆盖用户先澄清请求的需求，要求具体说明发送内容，未遗漏重点。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.256,
+      "peak_after": 34308096
+    },
+    {
+      "id": "refusal_valid",
+      "split": "transfer",
+      "variant": "dimensions",
+      "peak_before": 34357248,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "reason": "候选回复明确表明行为者是用户自己执行浇花，与请求的对应角色一致，且拒绝了对方请求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "reason": "用户原先表示周末忙碌，因此拒绝对方周日浇花请求符合用户当前方向“拒绝”。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "reason": "回复明确说明周日无法浇花，与先前用户表态周末忙碌相符，无新增虚假信息。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday.",
+            "reason": "回复直接针对对方周日请求浇花做出拒绝，没有遗漏必要信息，符合请求的拒绝意图。",
+            "source_message_ids": [
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 2.408,
+      "peak_after": 34373632
+    },
+    {
+      "id": "refusal_valid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34373632,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.535,
+      "peak_after": 34373632
+    },
+    {
+      "id": "photos_invalid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34373632,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.672,
+      "peak_after": 34373632
+    },
+    {
+      "id": "photos_invalid",
+      "split": "transfer",
+      "variant": "dimensions",
+      "peak_before": 34390016,
+      "response": {
+        "checks": [],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "Which album should I send you tonight?",
+            "reason": "候选回复由self提出澄清问题，符合self作为请求者和对方为执行者的角色分配。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "Which album should I send you tonight?",
+            "reason": "符合用户当前的先澄清方向，未做接受或拒绝，仅请求进一步信息。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "pass",
+            "candidate_quote": "Which album should I send you tonight?",
+            "reason": "澄清信息没有包含矛盾或虚构的时间与事实，尊重了原消息事实。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "Which album should I send you tonight?",
+            "reason": "澄清问题针对用户请求的旅行照片发送细节，符合当前意图且不偏题。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.024,
+      "peak_after": 34390016
+    },
+    {
+      "id": "refusal_invalid",
+      "split": "transfer",
+      "variant": "dimensions",
+      "peak_before": 34422784,
+      "response": {
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "消息中没有提及用户飞往巴黎的信息，属于无依据新增事实，不符真实内容。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "dimensions": {
+          "roles": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "reason": "用户（self）是行动者，发出拒绝；请求者是对方（other）；符合角色分配。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "stance": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "reason": "用户明确拒绝了对方请求，符合用户要求的拒绝方向。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "facts": {
+            "status": "fail",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "reason": "消息中没有提及用户飞往巴黎的信息，属于无依据新增事实，不符真实内容。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          "coverage": {
+            "status": "pass",
+            "candidate_quote": "I cannot water your plants Sunday because I will be flying to Paris.",
+            "reason": "回答涵盖了对方请求的具体时间（周日）及拒绝理由，符合拒绝请求的要求。",
+            "source_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        },
+        "uncertain_dimensions": [],
+        "check_status": "completed",
+        "prompt_version": "dimensions-v1"
+      },
+      "seconds": 3.11,
+      "peak_after": 34422784
+    },
+    {
+      "id": "refusal_invalid",
+      "split": "transfer",
+      "variant": "baseline",
+      "peak_before": 34439168,
+      "response": {
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 0.609,
+      "peak_after": 34455552
+    }
+  ],
+  "calls_attempted": 24,
+  "scores": {
+    "development_baseline": {
+      "true_positive": 3,
+      "false_positive": 0,
+      "true_negative": 4,
+      "false_negative": 1,
+      "completed": 8,
+      "failed": 0,
+      "target_hits": 2,
+      "target_total": 4,
+      "not_run": 0,
+      "false_positive_denominator": 4,
+      "false_negative_denominator": 4
+    },
+    "development_dimensions": {
+      "true_positive": 2,
+      "false_positive": 0,
+      "true_negative": 4,
+      "false_negative": 2,
+      "completed": 8,
+      "failed": 0,
+      "target_hits": 2,
+      "target_total": 4,
+      "not_run": 0,
+      "false_positive_denominator": 4,
+      "false_negative_denominator": 4
+    },
+    "transfer_baseline": {
+      "true_positive": 0,
+      "false_positive": 0,
+      "true_negative": 2,
+      "false_negative": 2,
+      "completed": 4,
+      "failed": 0,
+      "target_hits": 0,
+      "target_total": 2,
+      "not_run": 0,
+      "false_positive_denominator": 2,
+      "false_negative_denominator": 2
+    },
+    "transfer_dimensions": {
+      "true_positive": 1,
+      "false_positive": 0,
+      "true_negative": 2,
+      "false_negative": 1,
+      "completed": 4,
+      "failed": 0,
+      "target_hits": 1,
+      "target_total": 2,
+      "not_run": 0,
+      "false_positive_denominator": 2,
+      "false_negative_denominator": 2
+    }
+  },
+  "uncertain_verdicts": 0
+}

@@ -1,0 +1,283 @@
+{
+  "model": "gpt-4.1-mini",
+  "expected_prompt_version": "v2",
+  "synthetic_data": true,
+  "results": [
+    {
+      "case": "invitation",
+      "chat": "我：This week is busy. I might be free Saturday, but I’m not sure yet.\n对方：Dinner Saturday? 🙂 You pick the place this time.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "This week is busy. I might be free Saturday, but I’m not sure yet."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Dinner Saturday? 🙂 You pick the place this time."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "我这周很忙。",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "uncertain1",
+              "kind": "uncertain",
+              "text": "我可能周六有空，但还不确定。",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "其他人提议周六晚餐，并且让我选餐厅。",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "答应",
+            "text": "That sounds great! I'll choose a nice place for our dinner on Saturday. Looking forward to it! 😊",
+            "introduced_commitments": [
+              "I will choose the place for Saturday dinner."
+            ],
+            "assumptions": [
+              "You will be free Saturday."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "拒绝",
+            "text": "I'm sorry, but I can't commit to dinner this Saturday as I might still be busy. Let's catch up another time!",
+            "introduced_commitments": [],
+            "assumptions": [
+              "You are not definitely free on Saturday."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Could you let me know if you're sure about being free this Saturday? That would help me pick the place for dinner. 😊",
+            "introduced_commitments": [],
+            "assumptions": [
+              "Your availability on Saturday is uncertain."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "unsupported_fact",
+            "explanation": "回复0中假设用户周六一定有空，但用户之前明确表示仍不确定。因此，该假设没有充分证据支持。",
+            "related_message_ids": [
+              "m1"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v2"
+      },
+      "seconds": 5.23
+    },
+    {
+      "case": "help",
+      "chat": "我：Friday is already packed for me.\n对方：Could you help me move on Friday? Even an hour would help.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Friday is already packed for me."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Could you help me move on Friday? Even an hour would help."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "我星期五已经安排满了。",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "你能帮我星期五搬家吗？即使只有一个小时也有帮助。",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "拒绝",
+            "text": "I'm really sorry, but I won't be able to help you move on Friday as my schedule is fully booked. 😞",
+            "introduced_commitments": [],
+            "assumptions": [
+              "Your Friday is completely packed."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "有条件答应",
+            "text": "If I can free up some time on Friday, I will help you move for an hour. I'll let you know as soon as I confirm. 🙂",
+            "introduced_commitments": [
+              "Will help move on Friday for an hour if time can be freed."
+            ],
+            "assumptions": [
+              "You might be able to free some time on Friday despite your current schedule."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "提出替代方案",
+            "text": "I can't help on Friday, but maybe another day could work? Which other day are you available to move? 📅",
+            "introduced_commitments": [],
+            "assumptions": [
+              "Friday is not possible for you.",
+              "Other days might be possible."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "reply_index": 1,
+            "type": "stance_conflict",
+            "explanation": "用户明确表示星期五已经安排满了（m1），但此候选回复假设用户可能能够挤出时间帮忙，这与用户原始声明相矛盾，属于“我会确认然后告知”的模糊答应，实际上并非明确接受。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v2"
+      },
+      "seconds": 4.64
+    },
+    {
+      "case": "emoji",
+      "chat": "我：Could you take another look at the draft today?\n对方：Sure 🙂",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Could you take another look at the draft today?"
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Sure 🙂"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "用户请求对方今天再看一遍草稿。",
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "commitment1",
+              "kind": "commitment",
+              "text": "对方同意今天再看一遍草稿。",
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        }
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "简单致谢",
+            "text": "Thanks for agreeing to review the draft today! 😊",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Could you please let me know what specific parts of the draft you'd like me to focus on when reviewing today? 🤔",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1"
+            ]
+          },
+          {
+            "direction": "暂缓决定",
+            "text": "I'll wait to hear your thoughts after you've reviewed the draft today before making any further decisions. 🙂",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v2"
+      },
+      "seconds": 3.44
+    }
+  ],
+  "preferences": {
+    "tone": "warm",
+    "emoji": true,
+    "language": "English"
+  },
+  "core_sha256": "f4234ceaa03fc0b4a63c4a245f1e0b00393d0fd70a3fb5c168ff7c184c5ae914",
+  "evaluation_scope": "Single run of three synthetic development cases; not held-out evaluation or baseline comparison"
+}

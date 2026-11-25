@@ -1,0 +1,368 @@
+{
+  "model": "gpt-4.1-mini",
+  "expected_prompt_version": "v3",
+  "preferences": {
+    "tone": "warm",
+    "emoji": true,
+    "language": "English"
+  },
+  "directions_by_case": {
+    "invitation": [
+      "答应",
+      "拒绝",
+      "先澄清"
+    ],
+    "help": [
+      "拒绝",
+      "有条件答应",
+      "提出替代方案"
+    ],
+    "emoji": [
+      "简单致谢",
+      "先澄清",
+      "暂缓决定"
+    ]
+  },
+  "synthetic_data": true,
+  "results": [
+    {
+      "case": "invitation",
+      "chat": "我：This week is busy. I might be free Saturday, but I’m not sure yet.\n对方：Dinner Saturday? 🙂 You pick the place this time.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "This week is busy. I might be free Saturday, but I’m not sure yet."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Dinner Saturday? 🙂 You pick the place this time."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "用户这周很忙，可能周六有空，但不确定。",
+              "roles": {
+                "subject": "self",
+                "requester": "not_applicable",
+                "actor": "not_applicable",
+                "recipient": "not_applicable"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "是否周六一起吃晚饭？用户负责选地点。",
+              "roles": {
+                "subject": "other",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "答应",
+            "text": "Saturday dinner sounds great! If I can free up the time, I'll pick a nice place for us. Looking forward to it! 😊",
+            "introduced_commitments": [
+              "If I can free up the time, I will pick a place for dinner on Saturday."
+            ],
+            "assumptions": [
+              "My availability on Saturday is uncertain but possible."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "拒绝",
+            "text": "I won't be able to make it for dinner on Saturday after all. Sorry about that! Let's find another time soon. 🙏",
+            "introduced_commitments": [
+              "I refuse the invitation for Saturday dinner."
+            ],
+            "assumptions": [
+              "I am not available on Saturday."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Can you let me know what time you were thinking for Saturday dinner? That would help me decide if I can make it and pick a place. 😊",
+            "introduced_commitments": [],
+            "assumptions": [
+              "The time for dinner on Saturday is still unknown."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "reply_index": 0,
+            "type": "new_commitment",
+            "explanation": "候选回复在不确定周六是否有空的前提下，提出了如果能腾出时间将挑选餐厅的承诺。这符合用户意向中的有条件答应，因此被视为新承诺。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 0,
+            "type": "stance_conflict",
+            "explanation": "回复中说“如果我能腾出时间”，这其实是一个有条件的答应，不是无条件答应。根据规则，这种表达属于先澄清性质，在答应方向下存在立场冲突。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 1,
+            "type": "new_commitment",
+            "explanation": "候选回复明确拒绝了周六晚餐邀请，这是一个新的明确拒绝承诺。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "reply_index": 2,
+            "type": "missing_answer",
+            "explanation": "候选回复请求确认周六晚餐的时间但未给出接受或拒绝的明确答复，未完成对邀请的回应，属于回答内容缺失。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 9.17
+    },
+    {
+      "case": "help",
+      "chat": "我：Friday is already packed for me.\n对方：Could you help me move on Friday? Even an hour would help.",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Friday is already packed for me."
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Could you help me move on Friday? Even an hour would help."
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "fact",
+              "text": "用户周五已经安排满了。",
+              "roles": {
+                "subject": "self",
+                "requester": "not_applicable",
+                "actor": "not_applicable",
+                "recipient": "not_applicable"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "对方请求用户周五帮忙搬家，即使一小时也行。",
+              "roles": {
+                "subject": "other",
+                "requester": "other",
+                "actor": "self",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "拒绝",
+            "text": "Hi! I'm really sorry, but I won't be able to help with moving on Friday as my schedule is already completely full. I hope you find someone to assist you! 😊",
+            "introduced_commitments": [],
+            "assumptions": [
+              "User's Friday schedule is fully booked."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "有条件答应",
+            "text": "Hey! If I can free up at least an hour on Friday, I'd be happy to help you move then. I'll let you know if that becomes possible. 🤞",
+            "introduced_commitments": [
+              "Will try to free up one hour on Friday to help with moving if possible."
+            ],
+            "assumptions": [
+              "User might be able to free an hour on Friday despite the schedule being packed."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "提出替代方案",
+            "text": "I can't help on Friday as I'm fully booked. Would another day work for you to help with moving? Let me know which day might be best! 🙂",
+            "introduced_commitments": [
+              "Will consider helping on another day if user is available."
+            ],
+            "assumptions": [
+              "User is not available on Friday but might be on other days."
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "reply_index": 1,
+            "type": "unsupported_fact",
+            "explanation": "第二个回复中的前提假设“用户可能能腾出周五一小时”与用户明确表示周五已经安排满的事实（消息m1）冲突，回复中并无支持用户实际上能腾出时间的证据。",
+            "related_message_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 6.15
+    },
+    {
+      "case": "emoji",
+      "chat": "我：Could you take another look at the draft today?\n对方：Sure 🙂",
+      "extracted": {
+        "messages": [
+          {
+            "id": "m1",
+            "speaker": "self",
+            "text": "Could you take another look at the draft today?"
+          },
+          {
+            "id": "m2",
+            "speaker": "other",
+            "text": "Sure 🙂"
+          }
+        ],
+        "context": {
+          "items": [
+            {
+              "id": "fact1",
+              "kind": "commitment",
+              "text": "对方愿意今天再次查看草稿。",
+              "roles": {
+                "subject": "other",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m2"
+              ]
+            },
+            {
+              "id": "question1",
+              "kind": "question",
+              "text": "用户请求对方今天再次查看草稿。",
+              "roles": {
+                "subject": "unknown",
+                "requester": "self",
+                "actor": "other",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1"
+              ]
+            }
+          ]
+        },
+        "prompt_version": "v3"
+      },
+      "output": {
+        "replies": [
+          {
+            "direction": "简单致谢",
+            "text": "Thank you so much for agreeing to take another look at the draft today! 😊",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m2"
+            ]
+          },
+          {
+            "direction": "先澄清",
+            "text": "Could you please let me know what time today would be best for you to review the draft?",
+            "introduced_commitments": [],
+            "assumptions": [
+              "The exact time for review is not yet specified"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          },
+          {
+            "direction": "暂缓决定",
+            "text": "I will consider the draft review after I get more details about the timing from you.",
+            "introduced_commitments": [],
+            "assumptions": [
+              "The decision depends on the timing details that are currently unknown"
+            ],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ],
+        "checks": [],
+        "check_status": "completed",
+        "prompt_version": "v3"
+      },
+      "seconds": 3.81
+    }
+  ],
+  "core_sha256": "e679ee72905defecc841f0fa4620b122887942eff246900b031b401be5a1299d",
+  "evaluation_scope": "single development regression, not held-out or baseline comparison"
+}

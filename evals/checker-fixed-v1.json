@@ -1,0 +1,400 @@
+{
+  "dataset_version": "checker-fixed-v1",
+  "split": "development",
+  "label_author": "development assistant; not independently reviewed",
+  "notes": "Empty metadata held constant to avoid candidate self-explanations biasing checker. Score reply semantics; commitment reminders are not errors.",
+  "cases": [
+    {
+      "id": "roles_valid",
+      "pair": "roles",
+      "expected_error_types": [],
+      "rubric": "错误对照应识别 role_conflict；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Could you review my draft today?\n对方：Sure.",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "用户请对方审稿，对方已答应。",
+              "roles": {
+                "subject": "other",
+                "actor": "other",
+                "requester": "self",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "What time today will you be able to review my draft?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "roles_invalid",
+      "pair": "roles",
+      "expected_error_types": [
+        "role_conflict"
+      ],
+      "rubric": "错误对照应识别 role_conflict；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Could you review my draft today?\n对方：Sure.",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "用户请对方审稿，对方已答应。",
+              "roles": {
+                "subject": "other",
+                "actor": "other",
+                "requester": "self",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "Which sections would you like me to review for you?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "acceptance_valid",
+      "pair": "acceptance",
+      "expected_error_types": [],
+      "rubric": "错误对照应识别 stance_conflict；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：I am not sure about Saturday.\n对方：Would you join dinner Saturday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方邀请用户周六吃晚餐，用户此前不确定。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "答应"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "答应",
+            "text": "Yes, I will join you for dinner on Saturday.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "acceptance_invalid",
+      "pair": "acceptance",
+      "expected_error_types": [
+        "stance_conflict"
+      ],
+      "rubric": "错误对照应识别 stance_conflict；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：I am not sure about Saturday.\n对方：Would you join dinner Saturday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方邀请用户周六吃晚餐，用户此前不确定。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "答应"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "答应",
+            "text": "I'll check my schedule before deciding whether to join.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "conditional_valid",
+      "pair": "conditional",
+      "expected_error_types": [],
+      "rubric": "错误对照应识别 unsupported_fact；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Friday is packed.\n对方：Could you help me move for an hour Friday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方请求用户周五帮忙搬家一小时，用户原先很忙。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "有条件答应"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "有条件答应",
+            "text": "If I can free up an hour Friday, I can help you move.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "conditional_invalid",
+      "pair": "conditional",
+      "expected_error_types": [
+        "unsupported_fact"
+      ],
+      "rubric": "错误对照应识别 unsupported_fact；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Friday is packed.\n对方：Could you help me move for an hour Friday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方请求用户周五帮忙搬家一小时，用户原先很忙。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "other"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "有条件答应"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "有条件答应",
+            "text": "I'm free at 4 pm Friday and can help then.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "clarification_valid",
+      "pair": "clarification",
+      "expected_error_types": [],
+      "rubric": "错误对照应识别 unsupported_fact；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Saturday might work.\n对方：Dinner Saturday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方邀请用户周六晚餐，具体时间未定。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "What time were you thinking for dinner?",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "clarification_invalid",
+      "pair": "clarification",
+      "expected_error_types": [
+        "unsupported_fact"
+      ],
+      "rubric": "错误对照应识别 unsupported_fact；有效对照允许 new_commitment 提醒，但不应报实质错误。",
+      "request": {
+        "chat": "我：Saturday might work.\n对方：Dinner Saturday?",
+        "context": {
+          "items": [
+            {
+              "id": "c1",
+              "kind": "question",
+              "text": "对方邀请用户周六晚餐，具体时间未定。",
+              "roles": {
+                "subject": "self",
+                "actor": "self",
+                "requester": "other",
+                "recipient": "self"
+              },
+              "source_message_ids": [
+                "m1",
+                "m2"
+              ]
+            }
+          ]
+        },
+        "directions": [
+          "先澄清"
+        ],
+        "preferences": {
+          "tone": "brief",
+          "emoji": false,
+          "language": "English"
+        },
+        "candidates": [
+          {
+            "direction": "先澄清",
+            "text": "Great, dinner is confirmed for 7 pm Saturday.",
+            "introduced_commitments": [],
+            "assumptions": [],
+            "evidence_ids": [
+              "m1",
+              "m2"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

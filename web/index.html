@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reply Compass · 回话指南</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a class="brand" href="./">↗ Reply Compass <span>回话指南</span></a><span class="badge">本地交互原型</span></header>
+<main>
+  <section class="intro"><p class="eyebrow">YOUR WORDS, YOUR CHOICE</p><h1>想好怎么回应，<br>再找到自己的语气。</h1><p>看看上下文，选择立场，再把回复调成你的样子。</p></section>
+  <p class="notice">本地开发版：下方支持配置模型后分析自己的聊天；页面末尾的三个案例为预置演示，不代表 AI 实测效果。</p>
+  <section class="panel live-panel">
+    <h2>试试自己的聊天</h2>
+    <p id="model-status" role="status">正在检查本地后端…</p>
+    <p class="helper">先在本机整理并确认双方，再分析。点击“确认并分析”才会将聊天发送给 OpenAI。</p>
+    <label for="input-mode">输入方式</label><select id="input-mode"><option value="conversation">带姓名的聊天</option><option value="incoming">对方的一条消息</option></select>
+    <label for="chat-input">粘贴聊天或最新消息</label>
+    <textarea id="chat-input" rows="5" maxlength="20000" placeholder="Michael: I might be free Saturday.&#10;Alex: Dinner Saturday?"></textarea>
+    <button type="button" id="normalize" class="primary">整理并预览</button>
+    <div id="paste-review" hidden>
+      <p id="paste-notice" class="helper"></p>
+      <label id="identity-label" hidden>哪个人是你？<select id="identity"></select></label>
+      <label for="normalized-chat">确认后的对话（可修改“我／对方”和内容）</label>
+      <textarea id="normalized-chat" rows="5" maxlength="20000"></textarea>
+      <button type="button" id="extract" class="primary">确认并分析</button>
+    </div>
+    <p id="live-status" role="status" aria-live="polite"></p>
+    <div id="review" hidden><h3>核对上下文 · 可直接修改文本</h3><div id="live-messages"></div><div id="context-editor"></div>
+      <fieldset><legend>选择 1–3 个回复方向</legend><div id="live-directions"></div></fieldset>
+      <div class="controls"><label>语气 <select id="live-tone"><option value="brief">简短直接</option><option value="warm">友好温暖</option></select></label><label>回复语言 <select id="live-language"><option>English</option><option>中文</option></select></label><label><input type="checkbox" id="live-emoji"> 使用 Emoji</label></div>
+      <button type="button" id="generate" class="primary">确认上下文并生成</button>
+    </div><div id="live-results" aria-live="polite"></div>
+  </section>
+  <h2 class="demo-heading">先看三个预置案例</h2>
+  <nav id="scenarios" aria-label="演示案例"></nav>
+  <div class="workspace">
+    <section class="panel"><div class="panel-title"><span class="step">01</span><h2>正在聊什么</h2></div><div id="messages"></div><h3>对话中值得留意的事</h3><div id="context"></div></section>
+    <section class="panel"><div class="panel-title"><span class="step">02</span><h2>你想怎么回应</h2></div><div id="directions" class="directions"></div>
+      <div class="controls"><label>语气 <select id="tone"><option value="brief">简短直接</option><option value="warm">友好温暖</option></select></label><label class="check"><input type="checkbox" id="emoji"> 加一点 Emoji</label></div>
+      <div class="reply"><span class="eyebrow">回复建议 · 预置示例</span><p id="reply" aria-live="polite"></p></div>
+      <div class="impact"><h3>这条回复意味着什么</h3><p id="impact"></p></div>
+      <button id="copy" class="primary">复制回复 <span>↗</span></button><p id="feedback" role="status"></p>
+    </section>
+  </div>
+  <footer>你的立场，由你决定。原型不会发送消息，也不会保存聊天记录。</footer>
+</main><script src="app.js"></script><script src="live.js"></script>
+</body></html>
